@@ -54,7 +54,7 @@ ROOT_URLCONF = 'ProyectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['C:/Users/darkk/OneDrive/Escritorio/ProjectoFinal Django/ProyectoFinal/ProyectoFinalDS/ProyectoFinal/plantillas/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,6 +117,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+import os
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'ProyectoFinal/static'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
