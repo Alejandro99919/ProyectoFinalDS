@@ -27,8 +27,9 @@ html, body {
   }
   
   .botonLogin {
+    width: 80%;
     display: block;
-    margin: 20px auto;
+    margin: 130px auto;
     cursor:pointer;
     background: black;
     cursor: pointer;
@@ -38,7 +39,8 @@ html, body {
     font-size: 24px;
     font-weight: bold;
     position: relative;
-    border-radius: 12px;
+    border-radius: 40px;
+    margin-bottom: 60px;
 }
 
   .botonLogin:hover::before{
@@ -74,10 +76,34 @@ html, body {
   input[type="text"],
   input[type="password"]{
     margin: 10px;
-
 }
+
+
 
 .iconoTogglePassword{
   position: absolute;
  margin-left: 330px;
+}
+
+.Login-ForgotPassword{
+  font-size: 13px;
+  margin-top:20px;
+  position: absolute;
+  margin-left: 190px;
+}
+
+
+.Login-RememberMe{
+  font-size: 13px;
+  margin-top:20px;
+  position: absolute;
+  margin-left:20px;
+
+}
+
+.Login-CreateAccount{
+  font-size: 13px;
+  position: absolute;
+  margin-left:80px;
+  margin-top: 70px;
 }
