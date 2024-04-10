@@ -13,10 +13,15 @@
 </head>
 <body>
     <script src='{%static "js/togglePassword.js" %}'></script>
+    <script>
+        var togglePasswordIcono = '{%static "imagenes/togglePasswordIcono.png" %}';
+        var togglePasswordIconoOculta = '{%static "imagenes/togglePasswordIconoOculta.png" %}';
+
+    </script>
     <section class="Login">
         <h1 class="tituloLogin">OnusPura</h1>
         <div class="Login-Grupo">
-            <img src="./userIcono.png" class="iconoUsuario" alt="Icono Usuario" width="30px">
+            <img src='{%static "imagenes/userIcono.png" %}' class="iconoUsuario" alt="Icono Usuario" width="30px">
             <input type="text" name="user" id="user" placeholder="Ingresa tu usuario." maxlength="12">
            
         </div>
