@@ -54,7 +54,7 @@ ROOT_URLCONF = 'ProyectoFinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/darkk/OneDrive/Escritorio/ProjectoFinal Django/ProyectoFinal/ProyectoFinalDS/ProyectoFinal/plantillas/'],
+        'DIRS': ['./ProyectoFinal/plantillas/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

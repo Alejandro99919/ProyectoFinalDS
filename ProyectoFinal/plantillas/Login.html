@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link type='text/css' href='{%static "css/estiloLogin.css" %}' rel='stylesheet'  >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script defer src='{%static "js/togglePassword.js" %}'></script>
+    <section class="Login">
+        <h1 class="tituloLogin">OnusPura</h1>
+        <div class="Login-Grupo">
+            <img src='{%static "imagenes/userIcono.png" %}' class="iconoUsuario" alt="Icono Usuario" width="30px">
+            <input type="text" name="user" id="user" placeholder="Ingresa tu usuario." maxlength="12">
+           
+        </div>
+        <div class="Login-Grupo">
+            <img src='{%static "imagenes/passIcono.png" %}' class="iconoPassword" alt="Icono Password" width="30px">
+            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña." maxlength="12">
+            <img src='{%static "imagenes/togglePasswordIcono.png" %}' class="iconoTogglePassword" id="iconoTogglePassword" alt="Icono para mostrar/ocultar la contraseña" width="30px">
+        </div>
+        <button type="submit" class="botonLogin">Entrar</button>
+    </section>
+
+</body>
+</html>
