@@ -9,6 +9,8 @@ import datetime
 from django.template import Template, Context
 from django.http import request
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def plantillahija1(request):
 	return render(request, "plantillaHija1.html", {})
