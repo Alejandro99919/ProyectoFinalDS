@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href='{%static "css/estiloLogin.css" %}'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <script src='{%static "js/togglePassword.js" %}'></script>
+    <script>
+        var togglePasswordIcono = '{%static "imagenes/togglePasswordIcono.png" %}';
+        var togglePasswordIconoOculta = '{%static "imagenes/togglePasswordIconoOculta.png" %}';
+
+    </script>
+    <section class="Login">
+        <h1 class="tituloLogin">OnusPura</h1>
+        <div class="Login-Grupo">
+            <img src='{%static "imagenes/userIcono.png" %}' class="iconoUsuario" alt="Icono Usuario" width="30px">
+            <input type="text" name="user" id="user" placeholder="Ingresa tu usuario." maxlength="12">
+           
+        </div>
+        <div class="Login-Grupo">
+            <img src='{%static "imagenes/passIcono.png" %}' class="iconoPassword" alt="Icono Password" width="30px">
+            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña." maxlength="12">
+            <img src='{%static "imagenes/togglePasswordIconoOculta.png" %}' class="iconoTogglePassword" id="iconoTogglePassword" alt="Icono para mostrar/ocultar la contraseña" width="30px">
+        </div>
+        <div class="Login-ForgotPassword">
+            <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        <div class="Login-RememberMe">
+            <input type="checkbox" name="rememberMe" id="rememberMe">
+            <label for="rememberMe">Recordarme</label>
+
+        </div>
+
+        <div class="Login-CreateAccount">
+            <label>¿No tienes una cuenta?</label>
+            <a href="#">Regístrate</a>
+        </div>
+        <button type="submit" class="botonLogin">Entrar</button>
+    </section>
+
+</body>
+</html>

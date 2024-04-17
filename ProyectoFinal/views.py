@@ -12,3 +12,6 @@ from django.shortcuts import render
 
 def plantillahija1(request):
 	return render(request, "plantillaHija1.html", {})
+
+def Login(request):
+	return render(request, "Login.html", {})
