@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación de cuenta.</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href='{%static "css/estiloCrearCuenta.css" %}'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <script defer src="./soloNumeros.js"></script>
+</head>
+<body>
+    <script defer src='{%static "js/soloNumeros.js" %}'></script>
+    <section class="creacionCuenta">
+        <h2 class="tituloLogin">Creación De La Cuenta</h2>
+        <form action="" method="">
+            <div class="Cuenta-Grupo">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="nombre" placeholder="Nombre.">
+            </div>
+
+            <div class="Cuenta-Grupo">
+                <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" class="apellido" placeholder="Apellido.">
+            </div>
+
+            <div class="Cuenta-Grupo">
+                <label for="dni">DNI:</label>
+                <input type="text"id="dni" class="dni" placeholder="DNI." maxlength="10" onkeypress="return soloNumeros(event)">
+            </div>
+            
+            <div class="Cuenta-Grupo">
+                <label for="correo">Correo:</label>
+            <input type="email" id="correo" class="correo" placeholder="Correo Electrónico.">
+
+            </div>
+           
+            <div class="Cuenta-Grupo">
+                <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" class="usuario" placeholder="Usuario.">
+            </div>
+
+            <div class="Cuenta-Grupo">
+            <label for="contraseña">Contraseña:</label>
+            <input type="password" id="contraseña" class="contraseña" placeholder="Contraseña.">
+            </div>
+
+            <button class="botonLogin">Crear Cuenta</button>
+        </form>
+
+    </section>
+    
+</body>
+</html>

@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ProyectoFinal.views import plantillahija1, Login
+from ProyectoFinal.views import plantillahija1, Login, crearCuenta
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hija1/', plantillahija1),
     path('login/', Login),
+    path('crearCuenta/', crearCuenta),
+
 
 ]
 

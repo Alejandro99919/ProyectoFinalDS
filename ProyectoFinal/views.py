@@ -16,3 +16,7 @@ def plantillahija1(request):
 
 def Login(request):
 	return render(request, "Login.html", {})
+
+
+def crearCuenta(request):
+	return render(request, "crearCuenta.html", {})
