@@ -29,7 +29,7 @@ html, body {
   .botonLogin {
     width: 80%;
     display: block;
-    margin: 130px auto;
+    margin: 100px auto;
     cursor:pointer;
     background: black;
     cursor: pointer;
@@ -76,6 +76,7 @@ html, body {
   input[type="text"],
   input[type="password"]{
     margin: 10px;
+    text-align: center;
 }
 
 
@@ -92,18 +93,9 @@ html, body {
   margin-left: 190px;
 }
 
-
-.Login-RememberMe{
-  font-size: 13px;
-  margin-top:20px;
-  position: absolute;
-  margin-left:20px;
-
-}
-
 .Login-CreateAccount{
   font-size: 13px;
   position: absolute;
   margin-left:80px;
-  margin-top: 70px;
+  margin-top: 30px;
 }

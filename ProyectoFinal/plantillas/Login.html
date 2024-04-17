@@ -22,23 +22,15 @@
         <h1 class="tituloLogin">OnusPura</h1>
         <div class="Login-Grupo">
             <img src='{%static "imagenes/userIcono.png" %}' class="iconoUsuario" alt="Icono Usuario" width="30px">
-            <input type="text" name="user" id="user" placeholder="Ingresa tu usuario." maxlength="12">
+            <input type="text" name="user" id="user" placeholder="Usuario." maxlength="12">
            
         </div>
         <div class="Login-Grupo">
             <img src='{%static "imagenes/passIcono.png" %}' class="iconoPassword" alt="Icono Password" width="30px">
-            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña." maxlength="12">
+            <input type="password" name="password" id="password" placeholder="Contraseña." maxlength="12">
             <img src='{%static "imagenes/togglePasswordIconoOculta.png" %}' class="iconoTogglePassword" id="iconoTogglePassword" alt="Icono para mostrar/ocultar la contraseña" width="30px">
         </div>
-        <div class="Login-ForgotPassword">
-            <a href="#">¿Olvidaste tu contraseña?</a>
-        </div>
-        <div class="Login-RememberMe">
-            <input type="checkbox" name="rememberMe" id="rememberMe">
-            <label for="rememberMe">Recordarme</label>
-
-        </div>
-
+        
         <div class="Login-CreateAccount">
             <label>¿No tienes una cuenta?</label>
             <a href="/crearCuenta/">Regístrate</a>
