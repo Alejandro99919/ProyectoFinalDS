@@ -42,11 +42,8 @@ html, body {
     width: 60%;
     height: auto;
     display: block;
-<<<<<<< Updated upstream
     margin: 100px auto;
-=======
     margin: 30px auto;
->>>>>>> Stashed changes
     cursor:pointer;
     background: black;
     cursor: pointer;
@@ -91,12 +88,10 @@ html, body {
 
   input[type="text"],
   input[type="password"]{
-<<<<<<< Updated upstream
     margin: 10px;
     text-align: center;
-=======
     margin: 20px;
->>>>>>> Stashed changes
+
 }
 
 
@@ -113,8 +108,8 @@ html, body {
   bottom: 200px;
 }
 
-<<<<<<< Updated upstream
-=======
+
+
 .iconoPassword{
   position:absolute;
   bottom:140px;
@@ -122,7 +117,7 @@ html, body {
 }
 
 
->>>>>>> Stashed changes
+
 .Login-CreateAccount{
   font-size: 13px;
   position: absolute;
