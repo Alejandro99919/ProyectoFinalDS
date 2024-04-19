@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OnusPura</title>
+	<link type='text/css' href='{%static "css/dark.css" %}' rel='stylesheet'  >
+	<link type='text/css' href='{%static "css/estiloLogin.css" %}' rel='stylesheet'  >
+	<link type='text/css' href='{%static "css/barraNavegacionestilo.css" %}' rel='stylesheet'  >
+</head>
+<body>
+	<script src='{%static "js/togglePassword.js" %}'></script>
+	<script>
+        var togglePasswordIcono = '{%static "imagenes/togglePasswordIcono.png" %}';
+        var togglePasswordIconoOculta = '{%static "imagenes/togglePasswordIconoOculta.png" %}';
+    </script>
+	<div class="BarraNavegacion"> 
+		<header>
+			<nav>
+			<ul class="navigation">
+				<li><a href={% url 'home' %}>Inicio</a></li>
+				<li><a href={% url 'areaempresa' %}>Área Empresa</a></li>
+				{% if request.user.is_authenticated %}
+				<li><a href="">{{ user.username}}</a>
+					<div class="subnavigation__wrapper">
+						<ul>
+							<li><a href="#">Ajustes De Cuenta</a></li>
+							<li><a href={% url 'exit' %}>Cerrar Sesión</a></li>
+						</ul>
+					</div>
+				</li>
+				{% else %}
+					<li><a href={% url 'login' %}>Ingresar</a></li>
+				{% endif %}
+			</ul>
+			{% block content %} {% endblock %}
+
+		</nav>
+
+		</header>
+
+	</div>
+
+</body>
+</html>

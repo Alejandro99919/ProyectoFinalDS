@@ -1,0 +1,30 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+
+<section class="Login"> 
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <h3 class="tituloLogin">Login</h3>
+
+        <div class="Login_Usuario">
+           <img class="iconoUser" src='{%static "imagenes/userIcono.png" %}' class="iconoUsuario" alt="Icono Usuario" width="30px">
+           <input type="text" name="username" id="" placeholder="Usuario.">
+
+        </div>
+
+        <div class="Login_Contraseña">
+            <img class="iconoPassword" src='{%static "imagenes/passIcono.png" %}' class="iconoPassword" alt="Icono Password" width="30px">
+            <input type="password" name="password" id="password" placeholder="Contraseña.">
+            <img src='{%static "imagenes/togglePasswordIconoOculta.png" %}' class="iconoTogglePassword" id="iconoTogglePassword" alt="Icono para mostrar/ocultar la contraseña" width="30px">
+        </div>
+        <button class="botonLogin" type="submit">Iniciar Sesión</button>
+    
+    </form>
+    {% endblock %}
+
+
+</section>
