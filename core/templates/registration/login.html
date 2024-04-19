@@ -1,0 +1,20 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+
+<h3>LOGIN</h3>
+
+<br>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <input type="text" name="username" id="" placeholder="Ingresa Tu Usuario">
+    <br>
+    <input type="password" name="password" id="" placeholder="Ingresa Tu Contraseña">
+    
+    <br>
+    <button type="submit">Iniciar Seción</button>
+
+</form>
+{% endblock %}
