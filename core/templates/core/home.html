@@ -1,15 +1,26 @@
 {% extends 'core/BarraNavegacion.html' %}
+{% load static %}
+
+
+
 
 {% block content %}
 
-<h3>Inicio</h3>
+<section class="Main">
+	<img class="ImagenMain" src='{%static "imagenes/logo.jpg" %}' alt="" width="200px">
+	<h1 class="TituloMain">OnusPura</h1>
+	<h2 class="SubtituloMain">Leve Descripción</h2>
+	<p class="DescripcionMain" >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat amet provident nisi voluptatum, soluta itaque nam nesciunt ipsam. Dignissimos, provident? Modi libero laboriosam itaque facere sit ipsum maiores tempora aliquam.</p>
+</section>
+
+
+
+{% endblock%}
+
+
 {% if request.user.is_authenticated %}
-	<hr>
 	<h4>
 		Bienvenido, {{ user.username }}
 
 	</h4>
 {% endif %}
-
-
-{% endblock %}

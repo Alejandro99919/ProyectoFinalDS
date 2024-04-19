@@ -9,6 +9,7 @@
 	<link type='text/css' href='{%static "css/dark.css" %}' rel='stylesheet'  >
 	<link type='text/css' href='{%static "css/estiloLogin.css" %}' rel='stylesheet'  >
 	<link type='text/css' href='{%static "css/barraNavegacionestilo.css" %}' rel='stylesheet'  >
+	<link type='text/css' href='{%static "css/homeEstilo.css" %}' rel='stylesheet'  >
 </head>
 <body>
 	<script src='{%static "js/togglePassword.js" %}'></script>
@@ -35,13 +36,14 @@
 					<li><a href={% url 'login' %}>Ingresar</a></li>
 				{% endif %}
 			</ul>
-			{% block content %} {% endblock %}
+			
 
 		</nav>
 
 		</header>
 
 	</div>
+	{% block content %} {% endblock %}
 
 </body>
 </html>
