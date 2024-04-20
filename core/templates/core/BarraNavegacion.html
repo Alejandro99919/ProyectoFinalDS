@@ -9,8 +9,8 @@
 	<title>OnusPura</title>
 </head>
 <body>
-
-	<h2>OnusPura</h2>
+	<div class="container">
+		<h2>OnusPura</h2>
 	<ul>
 		<li><a href={% url 'home' %}>Inicio</a></li>
 		<li><a href={% url 'areaempresa' %}>Area Empresa</a></li>
@@ -22,5 +22,8 @@
 		{% endif %}
 	</ul>
 	{% block content %} {% endblock %}
+	</div>
+
+	
 </body>
 </html>
