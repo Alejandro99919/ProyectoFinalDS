@@ -17,10 +17,11 @@ Including another URLconf
 
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
-from .views import home, areaempresa, exit
+from .views import home, areaempresa, exit, register
 
 urlpatterns = [
     path('', home, name='home'),
     path('areaempresa/', areaempresa, name='areaempresa'),
     path('logout/', exit, name='exit'),
+    path('register', register, name='register'),
 ]

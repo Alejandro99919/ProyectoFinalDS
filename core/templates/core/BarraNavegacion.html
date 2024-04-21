@@ -19,6 +19,7 @@
 			<li><a href={% url 'exit' %}>Salir</a></li>
 		{% else %}
 			<li><a href={% url 'login' %}>Ingresar</a></li>
+			<li><a href={% url 'register' %}>Create New User</a></li>
 		{% endif %}
 	</ul>
 	{% block content %} {% endblock %}
