@@ -2,13 +2,15 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 20/04/2024
-# Version    : Beta 1.5
+# Ult Mod    : 21/04/2024
+# Version    : Beta 1.6
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from.forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 def home(request):
@@ -32,6 +34,9 @@ def register(request):
 		# VALIDA LA INFORMACION
 		if user_creation_form.is_valid():
 			user_creation_form.save()
+
+			user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
+			login(request, user)
 
 			return redirect('home')
 
