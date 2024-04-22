@@ -1,0 +1,33 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="row">
+	<div class="col-md-4">
+		<div class="card">
+			<div class="card-body">
+				<h5 class="card-title">{{ user.username | upper }}</h5>
+				<small class="bi bi-code-square"> Es Admin? </i>{{ user.is_staff }}</small>
+				<p class="card-text mt-2"><i class="bi bi-person-circle"> Nombre: </i>{{user.first_name}}</p>
+				<p class="card-text mt-2"><i class="bi bi-person-vcard-fill"> Apellido: </i>{{user.last_name}}</p>
+				<p class="card-text mt-2"><i class="bi bi-envelope-at-fill"> Correo: </i>{{ user.email }}</p>
+				<a href={% url 'exit' %} class="btn btn-sm btn-succes">Cerrar Sesión</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<h4>Onus Pura, Un Paso Al Futuro</h4>
+		<p>Onus Pura applicatio est quae magnum automotivum mundum verteret, inquirit ut omnia viridi imaginatione, magis naturali ambitu, efficiantur vapores conservandi et efficiantur ut omnes societates, sive naviculas, consequantur; Sicut vecturae, utere Onus Pura, optimum et accuratissimum vehiculum et particulam applicationis moderandi, innovamus in mensuratione electrici consumptionis, in analysi portarum, notitia de certo vehiculo tuo, et multo magis nos revolutionem sumus. In posterum, unus gradus, unus mutatio.</p>
+	</div>
+</div>
+
+{% else %}
+	<h4>OnusPura</h4>
+	<p>{% lorem %}</p>
+{% endif %}
+
+
+
+
+
+{% endblock %}

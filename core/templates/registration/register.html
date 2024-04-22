@@ -1,0 +1,29 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+<h3>REGISTRO DE USUARIO</h3>
+
+<br>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <div class="card mx-auto" style="width: 20rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">Complete El Formulario</h5>
+	    {{ form | crispy }}
+	    <a href={% url 'home' %} class="card-link">Inicio</a>
+	    <a href={% url 'login' %} class="card-link">Iniciar Sesión</a>
+	    <button class="btn btn-sm btn-primary float-end" type="submit">Crear Usuario</button>
+	  </div>
+	</div>
+
+    
+    
+    <br>
+  
+
+</form>
+{% endblock %}
