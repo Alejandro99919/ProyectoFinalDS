@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,9 +7,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-	<title>OnusPura</title>
+	<link rel="stylesheet" href='{%static "css/BarraNavegacionEstilo.css" %}'>
+  <link rel="stylesheet" href='{%static "css/acercaDeEstilo.css" %}'>
+  <link rel="stylesheet" href='{%static "css/estiloLogin.css" %}'>
+  <link rel="stylesheet" href='{%static "css/registroEstilo.css" %}'>
+  <link rel="stylesheet" href='{%static "css/animEstilo.css" %}'>
+  <title>OnusPura</title>
 </head>
 <body>
+<<<<<<< Updated upstream
 	<div class="container">
 		<h2>OnusPura</h2>
 	<ul>
@@ -26,5 +33,56 @@
 	</div>
 
 	
+=======
+ 
+  <nav>
+    <h2>OnusPura</h2>
+    <ul class="navigation">
+      <li> <a href={% url 'home' %}>Inicio </a> </li>
+      <li> <a href={% url 'acerca' %}>Acerca de</a></li>
+      <li> <a href={% url 'areaempresa' %}>Área Empresa</a></li>
+      {% if request.user.is_authenticated %}
+
+
+      <li> <a href={% url 'login' %}>{{request.user.username }}<svg xmlns="http://www.w3.org/2000/svg" class="chevron" width="24" height="24" viewBox="0 0 24 24"
+        stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M9 6l6 6l-6 6"></path>
+    </svg></a>
+
+      <div class="subnavigation__wrapper">
+        <ul>
+          <li><a href={% url 'exit' %}>Cerrar Sesión</a></li>
+         
+      </li>
+    </ul>
+    </div>
+    {% else %}
+    <li> <a href={% url 'login' %}>Usuario<svg xmlns="http://www.w3.org/2000/svg" class="chevron" width="24" height="24" viewBox="0 0 24 24"
+      stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M9 6l6 6l-6 6"></path>
+    </svg></a>
+    <div class="subnavigation__wrapper">
+      <ul>
+        <li><a href={% url 'login' %}>Iniciar Sesión</a></li>
+        <li><a href={% url 'register' %}>Crear Nuevo Usuario</a></li>
+      </ul>
+    </div>
+  {% endif %}
+
+  </nav>
+
+  
+    {% block content %}
+    
+
+
+    {% endblock %}
+ 
+
+    
+    
+>>>>>>> Stashed changes
 </body>
 </html>

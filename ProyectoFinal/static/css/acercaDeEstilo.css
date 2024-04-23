@@ -1,0 +1,27 @@
+body {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.card {
+    background-color: #6c757d;
+    color: #fff;
+    margin:20px;
+    padding:10px;
+}
+
+.card-title{
+    text-align: center;
+    margin:0px 0px 10px;
+    font-size: 30px;
+}
+
+.Univalle{
+text-align: center; 
+font-style: italic;
+font-size:20px;
+}
+
+.col-md-7{
+    padding:20px;
+}

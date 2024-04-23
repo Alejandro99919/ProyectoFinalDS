@@ -3,20 +3,16 @@
 {% block content %}
 
 {% load crispy_forms_tags %}
-<h3>LOGIN</h3>
-
 <br>
 
 <form action="" method="post">
     {% csrf_token %}
 
-    <div class="card mx-auto" style="width: 20rem;">
+    <div class="card mx-auto" style="width: 30rem;">
 	  <div class="card-body">
-	    <h5 class="card-title">Ingrese Sus Datos</h5>
+	    <h5 class="card-title">Ingreso De Datos</h5>
 	    {{ form | crispy }}
-	    <a href={% url 'home' %} class="card-link">Inicio</a>
-	    <a href={% url 'register' %} class="card-link">Create New User</a>
-	    <button class="btn btn-sm btn-primary float-end" type="submit">Iniciar Seción</button>
+	    <button class="btn btn-success mx-auto d-block" id="botonLogin" type="submit">Iniciar Sesión</button>
 	  </div>
 	</div>
 

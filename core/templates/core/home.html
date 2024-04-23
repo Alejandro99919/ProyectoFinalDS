@@ -1,21 +1,27 @@
 {% extends 'core/BarraNavegacion.html' %}
 
 {% block content %}
+
 {% if request.user.is_authenticated %}
 <div class="row">
 	<div class="col-md-4">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">{{ user.username | upper }}</h5>
-				<small class="bi bi-code-square"> Es Admin? </i>{{ user.is_staff }}</small>
+				<h5 class="card-title">{{ user.username }}</h5>
+				<small class="bi bi-code-square"> ¿Es Administrador?:
+					{% if user.is_staff %}
+						<i>Sí</i></small>
+					{% else %}
+						<i>No</i></small>
+					{% endif %}
 				<p class="card-text mt-2"><i class="bi bi-person-circle"> Nombre: </i>{{user.first_name}}</p>
 				<p class="card-text mt-2"><i class="bi bi-person-vcard-fill"> Apellido: </i>{{user.last_name}}</p>
 				<p class="card-text mt-2"><i class="bi bi-envelope-at-fill"> Correo: </i>{{ user.email }}</p>
-				<a href={% url 'exit' %} class="btn btn-sm btn-succes">Cerrar Sesión</a>
+				<a href={% url 'exit' %} class="btn btn-sm btn-success mx-auto d-block">Cerrar Sesión</a>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-8" style="padding:20px;">
 		<h4>Onus Pura, Un Paso Al Futuro</h4>
 		<p>{% lorem %}</p>
 	</div>
@@ -25,9 +31,6 @@
 	<h4>OnusPura</h4>
 	<p>{% lorem %}</p>
 {% endif %}
-
-
-
 
 
 {% endblock %}
