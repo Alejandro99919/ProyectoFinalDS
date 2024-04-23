@@ -41,3 +41,6 @@ def register(request):
 			return redirect('home')
 
 	return render(request, 'registration/register.html', data)
+
+def acerca(request):
+	return render(request, 'core/Acercade.html')
