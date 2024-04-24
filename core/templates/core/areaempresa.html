@@ -3,9 +3,11 @@
 {% block content %}
 
 <h3>Area Empresa</h3>
-<p>MKL-542</p>
-<p>JTP-818</p>
-<p>RTX-401</p>
-<p>FEO-119</p>
+
+<ul>
+	{% for c in Vehiculos %}
+	<li>{{c.matricula}}</li>
+	{% endfor %}
+</ul>
 
 {% endblock %}

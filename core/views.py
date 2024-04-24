@@ -2,14 +2,15 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 21/04/2024
-# Version    : Beta 1.6
+# Ult Mod    : 23/04/2024
+# Version    : Beta 1.7
 
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
+from .models import Carros
 
 
 # Create your views here.
@@ -18,7 +19,8 @@ def home(request):
 
 @login_required
 def areaempresa(request):
-	return render(request, 'core/areaempresa.html')
+    carro = Carros.objects.all()
+    return render(request, 'core/areaempresa.html', {"Vehiculos": carro})
 
 def exit(request):
 	logout(request)
