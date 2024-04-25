@@ -3,11 +3,63 @@
 {% block content %}
 
 <h3>Area Empresa</h3>
-
-<ul>
-	{% for c in Vehiculos %}
-	<li>{{c.matricula}}</li>
-	{% endfor %}
-</ul>
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+<div class="row">
+	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+		<div class="card">
+			<div class="card-body">
+				<form action="/registrarCarros/" method="POST"> {% csrf_token %}
+					<div class="form-group">
+						<input type="text" id="txtMatricula" name="txtMatricula" class="form-control" placeholder="Matricula" minlength="7" maxlength="7" required>
+					</div>
+					<br>
+					<div class="form-group">
+						<input type="text" id="txtDestino" name="txtDestino" class="form-control" placeholder="Destino" maxlength="50" required>
+					</div>
+					<br>
+					<div class="form-group">
+						<input type="text" id="numCant_paquetes" name="numCant_paquetes" class="form-control" min="1" max="50" value="1" required>
+					</div>
+					<br>
+					<div class="form-group">
+						<button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+		<h1>Listado De Vehiculos</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Matricula</th>
+						<th>Destino</th>
+						<th>Cantidad De Paquetes</th>
+						<th colspan="2">Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{# Este código utiliza el motor de plantillas Jinja2. #}
+					{% for c in Vehiculos %}
+					<tr>
+						<td>{{c.matricula}}</td>
+						<td>{{c.destino}}</td>
+						<td>{{c.cant_paquetes}}</td>
+						<td><a href="edicionCarro/{{c.matricula}}" class="btn btn-info">Editar</a></td>
+						<td><a href="eliminarCarro/{{c.matricula}}" class="btn btn-danger">Eliminar</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+</div>
 
 {% endblock %}

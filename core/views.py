@@ -2,10 +2,10 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 23/04/2024
-# Version    : Beta 1.7
+# Ult Mod    : 24/04/2024
+# Version    : Beta 1.8
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
@@ -46,3 +46,15 @@ def register(request):
 
 def acerca(request):
 	return render(request, 'core/Acercade.html')
+
+def registrarCarros(request):
+	matricula = request.POST['txtMatricula']
+	destino = request.POST['txtDestino']
+	cant_paquetes = request.POST['numCant_paquetes']
+	carros = Carros.objects.create(matricula=matricula, destino=destino, cant_paquetes=cant_paquetes)
+	return redirect('areaempresa')
+
+def eliminarCarro(request, matricula):
+	carros = Carros.objects.get(matricula=matricula)
+	carros.delete()
+	return redirect('areaempresa')
