@@ -58,3 +58,17 @@ def eliminarCarro(request, matricula):
 	carros = Carros.objects.get(matricula=matricula)
 	carros.delete()
 	return redirect('areaempresa')
+
+def edicionCarro(request, matricula):
+	carros = Carros.objects.get(matricula=matricula)
+	return render(request, "EdicionVehiculo.html", {"carros":carros})
+
+def editarCarros(request):
+	matricula = request.POST['txtMatricula']
+	destino = request.POST['txtDestino']
+	cant_paquetes = request.POST['numCant_paquetes']
+	carros = Carros.objects.get(matricula=matricula)
+	carros.destino = destino
+	carros.cant_paquetes = cant_paquetes
+	carros.save()
+	return redirect('areaempresa')

@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, eliminarCarro, edicionCarro, editarCarros
 
 urlpatterns = [
     path('', home, name='home'),
@@ -27,6 +27,7 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('acerca/', acerca, name='acerca'),
     path('registrarCarros/', registrarCarros, name='registrarCarros'),
-    path('eliminarCarro/<matricula>', views.eliminarCarro),
-    # path('edicionCarro/', edicionCarro, name='edicionCarro'),
+    path('areaempresa/eliminarCarro/<matricula>', eliminarCarro, name='eliminarCarro'),
+    path('areaempresa/edicionCarro/<matricula>', edicionCarro, name='edicionCarro'),
+    path('editarCarros/', editarCarros, name='editarCarros'),
 ]
