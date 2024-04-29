@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
-from .models import Carros
+from .models import Carros,Envios
 
 
 # Create your views here.
@@ -21,6 +21,25 @@ def home(request):
 def areaempresa(request):
     carro = Carros.objects.all()
     return render(request, 'core/areaempresa.html', {"Vehiculos": carro})
+
+@login_required
+def listadoGeneral(request):
+    # Filtrar los vehículos con activo igual a 1
+    vehiculos_activos = Carros.objects.all()
+    return render(request, 'core/ListadoGeneral.html', {"Vehiculos": vehiculos_activos})
+
+
+@login_required
+def listadoEliminados(request):
+    # Filtrar los vehículos con activo igual a 1
+    vehiculos_activos = Carros.objects.filter(estado='Eliminado')
+    return render(request, 'core/ListadoEliminados.html', {"Vehiculos": vehiculos_activos})
+
+@login_required
+def listadoMantenimiento(request):
+    # Filtrar los vehículos con activo igual a 1
+    vehiculos_activos = Carros.objects.filter(estado='Mantenimiento')
+    return render(request, 'core/ListadoMantenimiento.html', {"Vehiculos": vehiculos_activos})
 
 def exit(request):
 	logout(request)
@@ -49,26 +68,68 @@ def acerca(request):
 
 def registrarCarros(request):
 	matricula = request.POST['txtMatricula']
-	destino = request.POST['txtDestino']
-	cant_paquetes = request.POST['numCant_paquetes']
-	carros = Carros.objects.create(matricula=matricula, destino=destino, cant_paquetes=cant_paquetes)
+	modelo = request.POST['txtModelo']
+	anioFabricacion = request.POST['txtAnioFabricacion']
+	carros = Carros.objects.create(matricula=matricula, modelo=modelo, anioFabricacion=anioFabricacion)
 	return redirect('areaempresa')
 
+def registrarEnvio(request):
+    paquetes_pequeños = request.POST['txtPaquetesPequeños']
+    paquetes_grandes = request.POST['txtPaquetesGrandes']
+    paquetes_fragiles = request.POST['txtPaquetesFragiles']
+    destino = request.POST['txtDestino']
+    vehiculo_asignado = request.POST['txtVehiculoAsignado']
+    envios = Envios.objects.create(
+        paquetes_pequeños=paquetes_pequeños,
+        paquetes_grandes=paquetes_grandes,
+        paquetes_fragiles=paquetes_fragiles,
+        destino=destino,
+        vehiculo_asignado=vehiculo_asignado
+    )
+    vehiculo = Carros.objects.get(matricula=vehiculo_asignado)
+    if vehiculo.matricula == vehiculo_asignado and destino == 'Buga-Pereira' and vehiculo.cargaActual > 40:
+        vehiculo.cargaActual= (vehiculo.cargaActual - 40)
+        vehiculo.save()
+        return redirect('areaempresa')
+    elif vehiculo.matricula == vehiculo_asignado and destino == 'Buga-Cali' and vehiculo.cargaActual > 70:
+        vehiculo.cargaActual= (vehiculo.cargaActual - 70)
+        vehiculo.save()
+        return redirect('areaempresa')
+    else:
+        # Mostrar alerta de carga insuficiente (implementa esto en tu HTML/JS)
+        return redirect('areaempresa')
+
+
+
+
+	
 def eliminarCarro(request, matricula):
 	carros = Carros.objects.get(matricula=matricula)
-	carros.delete()
+	carros.estado="Eliminado"
+	carros.save();
 	return redirect('areaempresa')
 
 def edicionCarro(request, matricula):
-	carros = Carros.objects.get(matricula=matricula)
-	return render(request, "EdicionVehiculo.html", {"carros":carros})
+    carros = Carros.objects.get(matricula=matricula)
+    return render(request, "core/EdicionVehiculo.html", {"carros": carros})
 
 def editarCarros(request):
 	matricula = request.POST['txtMatricula']
-	destino = request.POST['txtDestino']
-	cant_paquetes = request.POST['numCant_paquetes']
+	modelo = request.POST['txtModelo']
+	estado= request.POST['txtEstado']
+	anioFabricacion = request.POST['txtAnio_Fabricacion']
+	carga_actual= request.POST['txtCarga_Actual']
 	carros = Carros.objects.get(matricula=matricula)
-	carros.destino = destino
-	carros.cant_paquetes = cant_paquetes
+	carros.modelo = modelo
+	carros.estado = estado
+	carros.anioFabricacion = anioFabricacion
+	carros.cargaActual = carga_actual
+	carros.save()
+	return redirect('areaempresa')
+
+
+def cargarCarros(request,matricula):
+	carros = Carros.objects.get(matricula=matricula)
+	carros.cargaActual=100
 	carros.save()
 	return redirect('areaempresa')

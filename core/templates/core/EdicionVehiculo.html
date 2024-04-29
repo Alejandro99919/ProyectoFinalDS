@@ -1,31 +1,45 @@
 {% extends 'core/BarraNavegacion.html' %}
 
 {% block content %}
-
 <div class="row">
-	<div class="col-md-4 offset-md-4">
-		<h2>Edicion De vehiculos</h2>
-		<div class="card">
-			<div class="card-body">
-				<form action="/editarCarros/" method="POST"> {% csrf_token %}
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de vehículos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarCarros/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtMatricula" name="txtMatricula" value="{{ carros.matricula }}" class="form-control" placeholder="Matrícula" minlength="7" maxlength="7" readonly required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtModelo" name="txtModelo" value="{{ carros.modelo }}" class="form-control" placeholder="Modelo" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+						<select class="form-select" id="txtEstado" name="txtEstado" aria-label="Default select example">
+							<option value="Activo">Activo</option>
+							<option value="Eliminado">Eliminado</option>
+							<option value="Mantenimiento">Mantenimiento</option>
+						  </select>
+                    </div>
+                    <br>
 					<div class="form-group">
-						<input type="text" id="txtMatricula" name="txtMatricula" value="{{carros.matricula}}" class="form-control" placeholder="Matricula" minlength="7" maxlength="7" readonly required>
+						<input type="text" id="txtAnio_Fabricacion" name="txtAnio_Fabricacion" value="{{carros.anioFabricacion}}" class="form-control" min="1" max="50" value="1" required>
 					</div>
-					<br>
+
 					<div class="form-group">
-						<input type="text" id="txtDestino" name="txtDestino" value="{{carros.destino}} class="form-control" placeholder="Destino" maxlength="50" required>
+						<input type="text" id="txtCarga_Actual" name="txtCarga_Actual" value="{{carros.cargaActual}}" class="form-control" min="1" max="50" value="1" required>
 					</div>
-					<br>
-					<div class="form-group">
-						<input type="text" id="numCant_paquetes" name="numCant_paquetes" value="{{carros.cant_paquetes}} class="form-control" min="1" max="50" value="1" required>
-					</div>
-					<br>
-					<div class="form-group">
-						<button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
-					</div>
-				</form>
-			</div>
-	</div>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

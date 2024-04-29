@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros, eliminarCarro, edicionCarro, editarCarros
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio,eliminarCarro, edicionCarro, editarCarros,cargarCarros,listadoGeneral, listadoEliminados,listadoMantenimiento
 
 urlpatterns = [
     path('', home, name='home'),
@@ -27,7 +27,16 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('acerca/', acerca, name='acerca'),
     path('registrarCarros/', registrarCarros, name='registrarCarros'),
-    path('areaempresa/eliminarCarro/<matricula>', eliminarCarro, name='eliminarCarro'),
-    path('areaempresa/edicionCarro/<matricula>', edicionCarro, name='edicionCarro'),
+    path('areaempresa/eliminarCarro/<str:matricula>/', eliminarCarro, name='eliminarCarro'),
+    path('areaempresa/edicionCarro/<str:matricula>/', edicionCarro, name='edicionCarro'),
     path('editarCarros/', editarCarros, name='editarCarros'),
-]
+    path('listadoGeneral/',listadoGeneral, name='listadoGeneral'),
+    path('listadoEliminados/',listadoEliminados, name='listadoEliminados'),
+    path('listadoMantenimiento/',listadoMantenimiento, name='listadoMantenimiento'),
+    path('areaempresa/cargarCarros/<str:matricula>/', cargarCarros, name='cargarCarros'),
+    path('registrarEnvio/', registrarEnvio, name='registrarEnvio')
+    
+
+
+
+]   

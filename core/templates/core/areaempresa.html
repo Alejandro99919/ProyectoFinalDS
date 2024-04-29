@@ -18,46 +18,71 @@
 						<input type="text" id="txtMatricula" name="txtMatricula" class="form-control" placeholder="Matricula" minlength="7" maxlength="7" required>
 					</div>
 					<br>
+
 					<div class="form-group">
-						<input type="text" id="txtDestino" name="txtDestino" class="form-control" placeholder="Destino" maxlength="50" required>
+						<input type="text" id="txtModelo" name="txtModelo" class="form-control" placeholder="Modelo Del Vehículo" maxlength="50" required>
 					</div>
 					<br>
+					
 					<div class="form-group">
-						<input type="text" id="numCant_paquetes" name="numCant_paquetes" class="form-control" min="1" max="50" value="1" required>
-					</div>
-					<br>
+						<input type="text" id="txtAnioFabricacion" name="txtAnioFabricacion" class="form-control" placeholder="Año Fabricación" maxlength="50" required>
+                    </div>
+
 					<div class="form-group">
 						<button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
 					</div>
 				</form>
 			</div>
 		</div>
-	<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
-		<h1>Listado De Vehiculos</h1>
-		<div class="table-responsive">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Matricula</th>
-						<th>Destino</th>
-						<th>Cantidad De Paquetes</th>
-						<th colspan="2">Opciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					{# Este código utiliza el motor de plantillas Jinja2. #}
-					{% for c in Vehiculos %}
-					<tr>
-						<td>{{c.matricula}}</td>
-						<td>{{c.destino}}</td>
-						<td>{{c.cant_paquetes}}</td>
-						<td><a href="edicionCarro/{{c.matricula}}" class="btn btn-info">Editar</a></td>
-						<td><a href="eliminarCarro/{{c.matricula}}" class="btn btn-danger">Eliminar</a></td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</div>
-	</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<form action="/registrarEnvio/" method="POST"> {% csrf_token %}
+							<div class="form-group">
+								<input type="text" id="txtPaquetesPequeños" name="txtPaquetesPequeños" class="form-control" placeholder="Cant. Paquetes Pequeños" minlength="7" maxlength="7" required>
+							</div>
+							<br>
+		
+							<div class="form-group">
+								<input type="text" id="txtPaquetesGrandes" name="txtPaquetesGrandes" class="form-control" placeholder="Cant. Paquetes Grandes" maxlength="50" required>
+							</div>
+							<br>
+							
+							<div class="form-group">
+								<input type="text" id="txtPaquetesFragiles" name="txtPaquetesFragiles" class="form-control" placeholder="Cant. Paquetes Frágiles" maxlength="50" required>
+							</div>
+		
+							<div class="form-group">
+								<select name="txtDestino">
+									<option value="Buga-Pereira">Buga-Pereira</option>
+									<option value="Buga-Cali">Buga-Cali</option>
+									<option value="Buga-Medellín">Buga-Medellín</option>
+								</select>
+							</div>
+
+							<div class="form-group">
+								<select name="txtVehiculoAsignado">
+									{% for c in Vehiculos %}
+										<option value="{{c.matricula}}">{{ c.matricula }}</option>
+									{% endfor %}
+								</select>
+								
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
+							</div>
+						</form>
+					</div>
+				</div>
+		
+		
+
+
+<div class="list-group">
+	<a href={%url 'listadoGeneral' %} class="list-group-item list-group-item-action">Listado General</a>
+	<a href={%url 'listadoEliminados' %} class="list-group-item list-group-item-action">Listado Eliminados</a>
+	<a href={%url 'listadoMantenimiento' %} class="list-group-item list-group-item-action">Listado Mantenimiento</a>
 </div>
 {% endblock %}

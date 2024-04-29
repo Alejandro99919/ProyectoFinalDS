@@ -1,0 +1,48 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+
+<h3>Listado General</h3>
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+
+	<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+		<h1>Listado De Vehiculos</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Matricula</th>
+						<th>Modelo</th>
+						<th>Año De Fabricacion</th>
+						<th>Carga Actual</th>
+						<th>Estado</th>
+						<th>Estado Carga</th>
+						<th colspan="2">Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{# Este código utiliza el motor de plantillas Jinja2. #}
+					{% for c in Vehiculos %}
+					<tr>
+						<td>{{c.matricula}}</td>
+						<td>{{c.modelo}}</td>
+						<td>{{c.anioFabricacion}}</td>
+						<td>{{c.cargaActual}}</td>
+						<td>{{c.estado}}</td>
+						<td>{{c.estadoCarga}}</td>
+						<td><a href={% url 'edicionCarro' c.matricula %} class="btn btn-info">Editar</a></td>
+						<td><a href={% url 'eliminarCarro' c.matricula %} class="btn btn-danger">Eliminar</a></td>
+						<td><a href={% url 'cargarCarros' c.matricula %} class="btn btn-danger">Cargar Batería</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}
