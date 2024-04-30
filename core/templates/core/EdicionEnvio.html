@@ -1,0 +1,53 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de envíos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarEnvios/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtID_Envio" name="txtID_Envio" value="{{ envio.id_envio }}" class="form-control" placeholder="ID Envío" minlength="7" maxlength="7" readonly required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtPaquetesPequeños" name="txtPaquetesPequeños" value="{{ envio.paquetes_pequeños }}" class="form-control" placeholder="Cantidad Paquetes Pequeños" minlength="7" maxlength="7">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtPaquetesGrandes" name="txtPaquetesGrandes" value="{{ envio.paquetes_grandes }}" class="form-control" placeholder="Cantidad Paquetes Grandes" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="txtPaquetesFragiles" name="txtPaquetesFragiles" value="{{ envio.paquetes_fragiles }}" class="form-control" placeholder="Cantidad Paquetes Frágiles" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <select name="txtDestino">
+                            <option value="Buga-Cali">Buga-Cali</option>
+                            <option value="Buga-Pereira">Buga-Pereira</option>
+                            <option value="Buga-Medellín">Buga-Medellín</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <select name="txtVehiculoAsignado">
+                            {% for c in envios %}
+                            <option value="{{ c.vehiculo_asignado }}">{{ c.vehiculo_asignado }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-sm btn-primary mx-auto d-block">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

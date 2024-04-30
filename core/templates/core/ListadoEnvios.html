@@ -1,0 +1,47 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+
+<h3>Listado Envíos</h3>
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+
+	<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+		<h1>Listado De Vehiculos</h1>
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID Envío</th>
+						<th>Cantidad Paquetes Pequeños</th>
+						<th>Cantidad Paquetes Grandes</th>
+						<th>Cantidad Paquetes Frágiles</th>
+						<th>Destino</th>
+						<th>Vehículo Asignado</th>
+						<th colspan="2">Opciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{# Este código utiliza el motor de plantillas Jinja2. #}
+					{% for c in Envios %}
+					<tr>
+						<td>{{c.id_envio}}</td>
+						<td>{{c.paquetes_pequeños}}</td>
+						<td>{{c.paquetes_grandes}}</td>
+						<td>{{c.paquetes_fragiles}}</td>
+						<td>{{c.destino}}</td>
+						<td>{{c.vehiculo_asignado}}</td>
+						<td><a href={% url 'edicionEnvio' c.id_envio %} class="btn btn-info">Editar</a></td>
+						<td><a href={% url 'eliminarEnvio' c.id_envio %} class="btn btn-danger">Eliminar</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

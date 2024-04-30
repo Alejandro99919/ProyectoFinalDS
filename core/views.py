@@ -23,6 +23,11 @@ def areaempresa(request):
     return render(request, 'core/areaempresa.html', {"Vehiculos": carro})
 
 @login_required
+def edicionEnvio(request):
+    envios = Envios.objects.all()
+    return render(request, 'core/edicionEnvio.html', {"Envios": envios})
+
+@login_required
 def listadoGeneral(request):
     # Filtrar los vehículos con activo igual a 1
     vehiculos_activos = Carros.objects.all()
@@ -40,6 +45,12 @@ def listadoMantenimiento(request):
     # Filtrar los vehículos con activo igual a 1
     vehiculos_activos = Carros.objects.filter(estado='Mantenimiento')
     return render(request, 'core/ListadoMantenimiento.html', {"Vehiculos": vehiculos_activos})
+
+@login_required
+def listadoEnvios(request):
+    envios = Envios.objects.all()
+    return render(request, 'core/ListadoEnvios.html', {"Envios": envios})
+
 
 def exit(request):
 	logout(request)
@@ -86,32 +97,33 @@ def registrarEnvio(request):
         destino=destino,
         vehiculo_asignado=vehiculo_asignado
     )
-    vehiculo = Carros.objects.get(matricula=vehiculo_asignado)
-    if vehiculo.matricula == vehiculo_asignado and destino == 'Buga-Pereira' and vehiculo.cargaActual > 40:
-        vehiculo.cargaActual= (vehiculo.cargaActual - 40)
-        vehiculo.save()
-        return redirect('areaempresa')
-    elif vehiculo.matricula == vehiculo_asignado and destino == 'Buga-Cali' and vehiculo.cargaActual > 70:
-        vehiculo.cargaActual= (vehiculo.cargaActual - 70)
-        vehiculo.save()
-        return redirect('areaempresa')
-    else:
-        # Mostrar alerta de carga insuficiente (implementa esto en tu HTML/JS)
-        return redirect('areaempresa')
+    envios.save()
+    return redirect('areaempresa')
 
-
-
-
-	
 def eliminarCarro(request, matricula):
 	carros = Carros.objects.get(matricula=matricula)
 	carros.estado="Eliminado"
 	carros.save();
 	return redirect('areaempresa')
 
+def eliminarEnvio(request, id_envio):
+	envios = Envios.objects.get(id_envio=id_envio)
+	envios.delete()
+	return redirect('areaempresa')
+
+
+
 def edicionCarro(request, matricula):
     carros = Carros.objects.get(matricula=matricula)
     return render(request, "core/EdicionVehiculo.html", {"carros": carros})
+
+def edicionEnvio(request, id_envio):
+    envio = Envios.objects.get(id_envio=id_envio)
+    envios = Envios.objects.all()
+    return render(request, 'core/edicionEnvio.html', {'envio': envio, 'envios': envios})
+
+
+
 
 def editarCarros(request):
 	matricula = request.POST['txtMatricula']
@@ -127,6 +139,22 @@ def editarCarros(request):
 	carros.save()
 	return redirect('areaempresa')
 
+
+def editarEnvios(request):
+    id_envio = request.POST['txtID_Envio']
+    paquetes_pequeños = request.POST['txtPaquetesPequeños']
+    paquetes_grandes = request.POST['txtPaquetesGrandes']
+    paquetes_fragiles = request.POST['txtPaquetesFragiles']
+    destino = request.POST['txtDestino']
+    vehiculo_asignado = request.POST['txtVehiculoAsignado']
+    envios = Envios.objects.get(id_envio=id_envio)
+    envios.paquetes_pequeños = paquetes_pequeños
+    envios.paquetes_grandes = paquetes_grandes
+    envios.paquetes_fragiles = paquetes_fragiles
+    envios.destino = destino
+    envios.vehiculo_asignado = vehiculo_asignado
+    envios.save()
+    return redirect('areaempresa')
 
 def cargarCarros(request,matricula):
 	carros = Carros.objects.get(matricula=matricula)
