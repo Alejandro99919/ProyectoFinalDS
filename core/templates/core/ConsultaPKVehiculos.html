@@ -1,0 +1,26 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'consultaPKVehiculos' %}">
+    {% csrf_token %}
+    <label for="matricula">Matrícula:</label><br>
+    <input type="text" id="matricula" name="matricula"><br>
+    <input type="submit" value="Consultar"><br>
+
+    <label for="modelo">Modelo:</label><br>
+    <input type="text" id="modelo" name="modelo" value="{% if carro %}{{ carro.modelo }}{% endif %}" readonly><br>
+
+    <label for="anioFabricacion">Año Fabricación:</label><br>
+    <input type="text" id="anioFabricacion" name="anioFabricacion" value="{% if carro %}{{ carro.anioFabricacion }}{% endif %}" readonly><br>
+
+    <label for="cargaActual">Carga Actual:</label><br>
+    <input type="text" id="cargaActual" name="cargaActual" value="{% if carro %}{{ carro.cargaActual }}{% endif %}" readonly><br>
+
+    <label for="estadoCarga">Estado de Carga:</label><br>
+    <input type="text" id="estadoCarga" name="estadoCarga" value="{% if carro %}{{ carro.estadoCarga }}{% endif %}" readonly><br>
+
+    <label for="estado">Estado:</label><br>
+    <input type="text" id="estado" name="estado" value="{% if carro %}{{ carro.estado }}{% endif %}" readonly><br>
+
+</form>
+{% endblock %}

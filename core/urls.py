@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio,eliminarCarro,eliminarEnvio ,edicionCarro, edicionEnvio,editarCarros,editarEnvios,cargarCarros,listadoGeneral, listadoEliminados,listadoMantenimiento,listadoEnvios
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio,eliminarCarro,eliminarEnvio ,edicionCarro, edicionEnvio,editarCarros,editarEnvios,cargarCarros,listadoGeneral, listadoEliminados,listadoMantenimiento,listadoEnvios,listadoEnviosEliminados,mostrarVehiculo,consultaPKEnvios,consultaPKVehiculos
 
 urlpatterns = [
     path('', home, name='home'),
@@ -37,6 +37,13 @@ urlpatterns = [
     path('listadoEliminados/',listadoEliminados, name='listadoEliminados'),
     path('listadoMantenimiento/',listadoMantenimiento, name='listadoMantenimiento'),
     path('listadoEnvios/',listadoEnvios,name='listadoEnvios'),
+    path('listadoEnviosEliminados/',listadoEnviosEliminados, name='listadoEnviosEliminados'),
+    path('consultaPKEnvios/',consultaPKEnvios,name="consultaPKEnvios"),
     path('areaempresa/cargarCarros/<str:matricula>/', cargarCarros, name='cargarCarros'),
-    path('registrarEnvio/', registrarEnvio, name='registrarEnvio')
+    path('registrarEnvio/', registrarEnvio, name='registrarEnvio'),
+    path('consultaPKEnvios/', consultaPKEnvios, name='consultaPKEnvios'),
+path('consultaPKVehiculos/', consultaPKVehiculos, name='consultaPKVehiculos'),
 ]
+
+
+

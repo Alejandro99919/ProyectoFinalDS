@@ -5,13 +5,12 @@
 # Ult Mod    : 24/04/2024
 # Version    : Beta 1.8
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from .models import Carros,Envios
-
 
 # Create your views here.
 def home(request):
@@ -51,6 +50,10 @@ def listadoEnvios(request):
     envios = Envios.objects.all()
     return render(request, 'core/ListadoEnvios.html', {"Envios": envios})
 
+@login_required
+def listadoEnviosEliminados(request):
+    envios = Envios.objects.filter(estado='Eliminado')
+    return render(request, 'core/ListadoEnviosEliminados.html', {"Envios": envios})
 
 def exit(request):
 	logout(request)
@@ -90,6 +93,42 @@ def registrarEnvio(request):
     paquetes_fragiles = request.POST['txtPaquetesFragiles']
     destino = request.POST['txtDestino']
     vehiculo_asignado = request.POST['txtVehiculoAsignado']
+
+    # Validar el vehículo asignado con la tabla Carros
+    carros = Carros.objects.filter(matricula=vehiculo_asignado)
+    if not carros:
+        return redirect('areaempresa')
+
+    carro = carros[0]
+
+    # Si la carga actual del carro es mayor o igual a 80, restarle el valor correspondiente
+   # Si la carga actual del carro es mayor o igual a 80, restarle el valor correspondiente
+    # Si la carga actual del carro es mayor o igual a 80, restarle el valor correspondiente
+    if carro.cargaActual >= 40:
+        if destino == 'Buga-Pereira':
+            carro.cargaActual =(carro.cargaActual - 40)
+    if carro.cargaActual >=50:
+        if destino == 'Buga-Cali':
+            carro.cargaActual = (carro.cargaActual - 50)
+    if carro.cargaActual >=80:
+        if destino =='Buga-Medellín':
+            carro.cargaActual = (carro.cargaActual - 80)
+    if carro.cargaActual >=80:        
+        if destino == 'Cali-Bogotá':
+            carro.cargaActual = (carro.cargaActual - 60)
+            
+    if carro.cargaActual >=70:
+        if destino == 'Bogotá-Medellín':
+            carro.cargaActual =(carro.cargaActual-70)
+            
+    if carro.cargaActual >=65:
+        if destino == 'Medellín-Bogotá':
+            carro.cargaActual = (carro.cargaActual-65)
+    if carro.cargaActual >=55:
+        if destino == 'Cali-Buga':
+            carro.cargaActual = (carro.cargaActual-55)
+
+    carro.save()
     envios = Envios.objects.create(
         paquetes_pequeños=paquetes_pequeños,
         paquetes_grandes=paquetes_grandes,
@@ -98,7 +137,9 @@ def registrarEnvio(request):
         vehiculo_asignado=vehiculo_asignado
     )
     envios.save()
+    
     return redirect('areaempresa')
+
 
 def eliminarCarro(request, matricula):
 	carros = Carros.objects.get(matricula=matricula)
@@ -108,8 +149,10 @@ def eliminarCarro(request, matricula):
 
 def eliminarEnvio(request, id_envio):
 	envios = Envios.objects.get(id_envio=id_envio)
-	envios.delete()
+	envios.estado="Eliminado"
+	envios.save();
 	return redirect('areaempresa')
+
 
 
 
@@ -122,8 +165,22 @@ def edicionEnvio(request, id_envio):
     envios = Envios.objects.all()
     return render(request, 'core/edicionEnvio.html', {'envio': envio, 'envios': envios})
 
+def consultaPKEnvios(request):
+    envio = None
+    if request.method == 'POST':
+        id_envio = request.POST.get('id_envio')
+        envio = Envios.objects.filter(pk=id_envio).first()
+
+    return render(request, 'core/ConsultaPKEnvios.html', {'envio': envio})
 
 
+def consultaPKVehiculos(request):
+    carro = None  # Inicializa 'carro' a None
+    if request.method == 'POST':
+        matricula = request.POST.get('matricula')
+        carro = Carros.objects.filter(matricula=matricula).first()
+
+    return render(request, 'core/ConsultaPKVehiculos.html', {'carro': carro})
 
 def editarCarros(request):
 	matricula = request.POST['txtMatricula']
@@ -147,12 +204,14 @@ def editarEnvios(request):
     paquetes_fragiles = request.POST['txtPaquetesFragiles']
     destino = request.POST['txtDestino']
     vehiculo_asignado = request.POST['txtVehiculoAsignado']
+    estado = request.POST['txtEstado']
     envios = Envios.objects.get(id_envio=id_envio)
     envios.paquetes_pequeños = paquetes_pequeños
     envios.paquetes_grandes = paquetes_grandes
     envios.paquetes_fragiles = paquetes_fragiles
     envios.destino = destino
     envios.vehiculo_asignado = vehiculo_asignado
+    envios.estado = estado
     envios.save()
     return redirect('areaempresa')
 
@@ -161,3 +220,12 @@ def cargarCarros(request,matricula):
 	carros.cargaActual=100
 	carros.save()
 	return redirect('areaempresa')
+
+
+
+
+
+
+def mostrarVehiculo(request,pk):
+   vehiculo = get_object_or_404(Carros, pk=pk)
+   return render(request, 'ConsultaPKEnvios.html',{'vehiculo':vehiculo})

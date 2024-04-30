@@ -1,0 +1,31 @@
+{% extends 'core/BarraNavegacion.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'consultaPKEnvios' %}">
+    {% csrf_token %}
+    <label for="id_envio">ID del Envío:</label><br>
+    <input type="text" id="id_envio" name="id_envio"><br>
+    <input type="submit" value="Consultar"><br>
+
+    <label for="paquetes_pequeños">Paquetes Pequeños:</label><br>
+    <input type="text" id="paquetes_pequeños" name="paquetes_pequeños" value="{% if envio %}{{ envio.paquetes_pequeños }}{% endif %}" readonly><br>
+
+    <label for="paquetes_grandes">Paquetes Grandes:</label><br>
+    <input type="text" id="paquetes_grandes" name="paquetes_grandes" value="{% if envio %}{{ envio.paquetes_grandes }}{% endif %}" readonly><br>
+
+    <label for="paquetes_fragiles">Paquetes Frágiles:</label><br>
+    <input type="text" id="paquetes_fragiles" name="paquetes_fragiles" value="{% if envio %}{{ envio.paquetes_fragiles }}{% endif %}" readonly><br>
+
+    <label for="destino">Destino:</label><br>
+    <input type="text" id="destino" name="destino" value="{% if envio %}{{ envio.destino }}{% endif %}" readonly><br>
+
+    <label for="vehiculo_asignado">Vehículo Asignado:</label><br>
+    <input type="text" id="vehiculo_asignado" name="vehiculo_asignado" value="{% if envio %}{{ envio.vehiculo_asignado }}{% endif %}" readonly><br>
+
+    <label for="estado">Estado:</label><br>
+    <input type="text" id="estado" name="estado" value="{% if envio %}{{ envio.estado }}{% endif %}" readonly><br>
+
+</form>
+
+
+{% endblock %}

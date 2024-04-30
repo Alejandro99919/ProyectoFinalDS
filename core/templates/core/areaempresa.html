@@ -1,5 +1,4 @@
 {% extends 'core/BarraNavegacion.html' %}
-
 {% block content %}
 
 <h3>Area Empresa</h3>
@@ -41,7 +40,7 @@
 					<div class="card-body">
 						<form action="/registrarEnvio/" method="POST"> {% csrf_token %}
 							<div class="form-group">
-								<input type="text" id="txtPaquetesPequeños" name="txtPaquetesPequeños" class="form-control" placeholder="Cant. Paquetes Pequeños" minlength="7" maxlength="7" required>
+								<input type="text" id="txtPaquetesPequeños" name="txtPaquetesPequeños" class="form-control" placeholder="Cant. Paquetes Pequeños" minlength="1" maxlength="7" required>
 							</div>
 							<br>
 		
@@ -59,6 +58,10 @@
 									<option value="Buga-Pereira">Buga-Pereira</option>
 									<option value="Buga-Cali">Buga-Cali</option>
 									<option value="Buga-Medellín">Buga-Medellín</option>
+									<option value="Cali-Bogotá">Cali-Bogotá</option>
+									<option value="Bogotá-Medellín">Bogotá-Medellín</option>
+									<option value="Medellín-Bogotá">Medellín-Bogotá</option>
+									<option value="Cali-Buga">Cali-Buga</option>
 								</select>
 							</div>
 
@@ -77,13 +80,44 @@
 					</div>
 				</div>
 		
-		
+				<div class="dropdown">
+					<h2>Listados Vehículos</h2>
+					<!-- Este es el botón que activa la lista desplegable. Puedes cambiar el texto 'Selecciona una opción' por el que prefieras -->
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Selecciona una opción
+					</button>
+				
+					<!-- Aquí es donde se definen las opciones de la lista desplegable. Puedes añadir o eliminar opciones según necesites -->
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					  <a class="dropdown-item" href={% url 'listadoGeneral' %}>Listado General</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+					  <a class="dropdown-item" href={% url 'listadoEliminados' %}>Listado Vehículos Eliminados</a> <!-- Cambia 'Opción 2' por el texto de tu opción -->
+					  <a class="dropdown-item" href={% url 'listadoMantenimiento' %}>Listado Vehículos Mantenimiento</a> <!-- Cambia 'Opción 3' por el texto de tu opción -->
+					  <a class="dropdown-item" href={% url 'consultaPKVehiculos' %}>Consulta Vehículos por PK</a> <!-- Cambia 'Opción 3' por el texto de tu opción -->
+					</div>
+				
+				  </div>
+
+				  <div class="dropdown">
+					<h2>Listados Envíos</h2>
+					<!-- Este es el botón que activa la lista desplegable. Puedes cambiar el texto 'Selecciona una opción' por el que prefieras -->
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  Selecciona una opción
+					</button>
+				
+					<!-- Aquí es donde se definen las opciones de la lista desplegable. Puedes añadir o eliminar opciones según necesites -->
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					  <a class="dropdown-item" href={%url 'listadoEnvios' %}>Listado Envíos</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+					  <a class="dropdown-item" href={%url 'listadoEnviosEliminados' %}>Listado Envíos Eliminados</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+					  <a class="dropdown-item" href={%url 'consultaPKEnvios' %}>Consulta Envíos por PK</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+					
+					</div>
+				
+				  </div>
 
 
-<div class="list-group">
-	<a href={%url 'listadoGeneral' %} class="list-group-item list-group-item-action">Listado General</a>
-	<a href={%url 'listadoEliminados' %} class="list-group-item list-group-item-action">Listado Eliminados</a>
-	<a href={%url 'listadoMantenimiento' %} class="list-group-item list-group-item-action">Listado Mantenimiento</a>
-	<a href={%url 'listadoEnvios' %} class="list-group-item list-group-item-action">Listado Envíos</a>
-</div>
+
+	
+	
+
+
 {% endblock %}

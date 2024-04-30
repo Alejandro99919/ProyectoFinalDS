@@ -15,7 +15,7 @@ class Envios(models.Model):
     paquetes_fragiles = models.IntegerField(default=0)
     destino = models.CharField(max_length=50)
     vehiculo_asignado = models.CharField(max_length=50,default="-")
-    
+    estado = models.CharField(max_length=50, default='Asignado')
     
     
     
