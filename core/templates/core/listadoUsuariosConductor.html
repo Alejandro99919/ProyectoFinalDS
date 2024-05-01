@@ -16,12 +16,12 @@
     <table class="table table-striped">
       <thead>
         <tr>
-         <th>Nombre Usuario</th>
+          <th>Identificacion</th>
+          <th>Nombre Usuario</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Email</th>
           <th>Fecha de Registro</th>
-          <th>Último Inicio de Sesión</th>
           <th>Administrador</th>
           <th>Despachador</th>
           <th>Conductor</th>
@@ -31,12 +31,12 @@
       <tbody>
         {% for usuario in usuarios_no_staff %}
         <tr>
+          <td>{{ usuario.id }}</td>
           <td>{{ usuario.username }}</td>
           <td>{{ usuario.first_name }}</td>
           <td>{{ usuario.last_name }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.date_joined }}</td>
-          <td>{{ usuario.last_login }}</td>
           <td>{{ usuario.is_superuser }}</td>
           <td>{{ usuario.is_staff }}</td>
           <td>

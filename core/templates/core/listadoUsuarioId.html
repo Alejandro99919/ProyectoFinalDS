@@ -1,0 +1,89 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% block content %}
+
+<h3>Buscar Usuario por ID</h3>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_usuario">ID Usuario:</label>
+    <input type="number" class="form-control" id="id_usuario" name="id_usuario" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+{% if usuario %}
+  <h3>Detalles del Usuario</h3>
+
+  <style>
+    /* Aplicamos estilos a la tabla y las celdas (th y td) */
+    .table, .table th, .table td {
+      color: white; /* Color del texto en blanco */
+    }
+  </style>
+
+  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-12">
+    <h1>Usuario: {{ usuario.username }}</h1>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>ID Usuario</th>
+            <td>{{ usuario.id }}</td>
+          </tr>
+          <tr>
+            <th>Nombre Usuario</th>
+            <td>{{ usuario.username }}</td>
+          </tr>
+          <tr>
+            <th>Nombre</th>
+            <td>{{ usuario.first_name }}</td>
+          </tr>
+          <tr>
+            <th>Apellido</th>
+            <td>{{ usuario.last_name }}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{ usuario.email }}</td>
+          </tr>
+          <tr>
+            <th>Fecha de Registro</th>
+            <td>{{ usuario.date_joined }}</td>
+          </tr>
+          <tr>
+            <th>Último Inicio de Sesión</th>
+            <td>{{ usuario.last_login }}</td>
+          </tr>
+          <tr>
+            <th>Administrador</th>
+            <td>{{ usuario.is_superuser }}</td>
+          </tr>
+          <tr>
+            <th>Despachador</th>
+            <td>{{ usuario.is_staff }}</td>
+          </tr>
+          <tr>
+            <th>Conductor</th>
+            <td>
+              {% if not usuario.is_staff and not usuario.is_superuser %}
+                True
+              {% elif usuario.is_superuser %}
+                False
+              {% else %}
+                False
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>Estado Activo</th>
+            <td>{{ usuario.is_active }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

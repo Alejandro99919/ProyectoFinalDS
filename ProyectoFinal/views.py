@@ -2,8 +2,8 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 30/04/2024
-# Version    : Beta 2.0
+# Ult Mod    : 01/05/2024
+# Version    : Beta 2.1
 
 from django.http import HttpResponse
 import datetime

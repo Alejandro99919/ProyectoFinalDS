@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio, eliminarCarro, eliminarEnvio, edicionCarro, edicionEnvio, editarCarros, editarEnvios, cargarCarros, listadoGeneral, listadoEliminados, listadoMantenimiento, listadoEnvios, listadoEnviosEliminados, mostrarVehiculo, consultaPKEnvios, consultaPKVehiculos, DatosUser, listadoUsuariosGeneral, listadoUsuariosEliminados, listadoUsuariosConductor
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio, eliminarCarro, eliminarEnvio, edicionCarro, edicionEnvio, editarCarros, editarEnvios, cargarCarros, listadoGeneral, listadoEliminados, listadoMantenimiento, listadoEnvios, listadoEnviosEliminados, mostrarVehiculo, consultaPKEnvios, consultaPKVehiculos, DatosUser, listadoUsuariosGeneral, listadoUsuariosEliminados, listadoUsuariosConductor, listadoUsuariosDespachadores, listadoUsuariosAdministradores, listadoUsuarioId, EliminacionUsuario, EdicionUsuario, ActivacionUsuario
 
 urlpatterns = [
     path('', home, name='home'),
@@ -47,6 +47,12 @@ urlpatterns = [
     path('listadoUsuariosGeneral/', listadoUsuariosGeneral, name='listadoUsuariosGeneral'),
     path('listadoUsuariosEliminados/', listadoUsuariosEliminados, name='listadoUsuariosEliminados'),
     path('listadoUsuariosConductor/', listadoUsuariosConductor, name='listadoUsuariosConductor'),
+    path('listadoUsuariosDespachadores/', listadoUsuariosDespachadores, name='listadoUsuariosDespachadores'),
+    path('listadoUsuariosAdministradores/', listadoUsuariosAdministradores, name='listadoUsuariosAdministradores'),
+    path('listadoUsuarioId/', listadoUsuarioId, name='listadoUsuarioId'),
+    path('listadoUsuariosGeneral/EliminacionUsuario/<int:id_usuario>', EliminacionUsuario, name='EliminacionUsuario'),
+    path('listadoUsuariosGeneral/EdicionUsuario/<int:id_usuario>', EdicionUsuario, name='EdicionUsuario'),
+    path('listadoUsuariosGeneral/ActivacionUsuario/<int:id_usuario>', ActivacionUsuario, name='ActivacionUsuario'),
 ]
 
 

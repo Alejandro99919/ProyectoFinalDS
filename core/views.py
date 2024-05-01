@@ -2,17 +2,18 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 30/04/2024
-# Version    : Beta 2.0
+# Ult Mod    : 01/05/2024
+# Version    : Beta 2.1
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,  FormularioEdicionUsuario
 from django.contrib.auth import authenticate, login
 from .models import Carros, Envios
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 
@@ -257,3 +258,68 @@ def listadoUsuariosEliminados(request):
 def listadoUsuariosConductor(request):
   usuarios_no_staff = User.objects.exclude(is_superuser=True).exclude(is_staff=True)  # Excluir superusuarios y staff
   return render(request, 'core/listadoUsuariosConductor.html', {'usuarios_no_staff': usuarios_no_staff})
+
+def listadoUsuariosDespachadores(request):
+    usuarios_is_staff = User.objects.filter(is_staff=True)
+    return render(request, 'core/listadoUsuariosDespachadores.html', {'usuarios_is_staff': usuarios_is_staff})
+
+def listadoUsuariosAdministradores(request):
+    usuarios_superuser = User.objects.filter(is_superuser=True)
+    return render(request, 'core/listadoUsuariosAdministradores.html', {'usuarios_superuser': usuarios_superuser})
+
+def listadoUsuarioId(request):
+    if request.method == 'POST':
+        id_usuario = request.POST.get('id_usuario')
+        try:
+            usuario = User.objects.get(pk=id_usuario)
+        except User.DoesNotExist:
+            usuario = None
+        return render(request, 'core/listadoUsuarioId.html', {'usuario': usuario})
+    else:
+        return render(request, 'core/listadoUsuarioId.html')
+
+def EliminacionUsuario(request, id_usuario):
+    try:
+        usuario = User.objects.get(pk=id_usuario)  # Usar clave primaria para buscar usuario
+        if usuario:  # Comprobar si el usuario existe antes de desactivar
+            usuario.is_active = False
+            usuario.save()
+            messages.success(request, f"El usuario '{usuario.username}' ha sido desactivado correctamente.")
+            return redirect('listadoUsuariosGeneral')  # Redirigir a la vista de listado de usuarios
+        else:
+            messages.error(request, "Usuario no encontrado.")
+            return redirect('listadoUsuariosGeneral')  # Redirigir con mensaje de error
+    except User.DoesNotExist:
+        messages.error(request, "Usuario no encontrado.")
+        return redirect('listadoUsuariosGeneral')  # Redirigir con mensaje de error
+
+@login_required
+def EdicionUsuario(request, id_usuario):
+    Usuario = get_user_model()
+    try:
+        usuario = Usuario.objects.get(pk=id_usuario)
+    except Usuario.DoesNotExist:
+        return redirect('listadoUsuariosGeneral')  # Redirigir a la lista de usuarios en caso de error
+    if request.method == 'POST':
+        formulario = FormularioEdicionUsuario(request.POST, instance=usuario)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('listadoUsuariosGeneral')  # Redirigir a la lista de usuarios tras el éxito
+    else:
+        formulario = FormularioEdicionUsuario(instance=usuario)
+        return render(request, 'core/EdicionUsuario.html', {'formulario': formulario, 'usuario': usuario})
+
+def ActivacionUsuario(request, id_usuario):
+    try:
+        usuario = User.objects.get(pk=id_usuario)  # Usar clave primaria para buscar usuario
+        if usuario:  # Comprobar si el usuario existe antes de desactivar
+            usuario.is_active = True
+            usuario.save()
+            messages.success(request, f"El usuario '{usuario.username}' ha sido desactivado correctamente.")
+            return redirect('listadoUsuariosGeneral')  # Redirigir a la vista de listado de usuarios
+        else:
+            messages.error(request, "Usuario no encontrado.")
+            return redirect('listadoUsuariosGeneral')  # Redirigir con mensaje de error
+    except User.DoesNotExist:
+        messages.error(request, "Usuario no encontrado.")
+        return redirect('listadoUsuariosGeneral')  # Redirigir con mensaje de error

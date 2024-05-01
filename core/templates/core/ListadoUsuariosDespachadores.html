@@ -1,7 +1,7 @@
 {% extends 'core/BarraNavegacion.html' %}
 {% block content %}
 
-<h3>Listado De Usuarios Inactivos / Eliminados</h3>
+<h3>Listado de Despachadores</h3>
 
 <style>
   /* Aplicamos estilos a la tabla y las celdas (th y td) */
@@ -11,7 +11,7 @@
 </style>
 
 <div class="col-sm-12 col-md-6 col-lg-8 col-xl-12">
-  <h1>Usuarios Inactivos / Eliminados</h1>
+  <h1>Despachadores</h1>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for usuario in usuarios_inactivos %}
+        {% for usuario in usuarios_is_staff %}
         <tr>
           <td>{{ usuario.id }}</td>
           <td>{{ usuario.username }}</td>

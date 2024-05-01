@@ -1,0 +1,12 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% block content %}
+
+<h3>Editar Usuario - {{ usuario.username }}</h3>
+
+<form method="post">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
+
+{% endblock %}
