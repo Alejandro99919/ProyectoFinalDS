@@ -1,0 +1,31 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% block content %}
+
+<h3>Datos De Usuarios</h3>
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+
+		
+<div class="dropdown">
+	<h2>Listados Usuarios</h2>
+	<!-- Este es el botón que activa la lista desplegable. Puedes cambiar el texto 'Selecciona una opción' por el que prefieras -->
+	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  Selecciona una opción
+	</button>
+				
+	<!-- Aquí es donde se definen las opciones de la lista desplegable. Puedes añadir o eliminar opciones según necesites -->
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	<a class="dropdown-item" href={% url 'listadoUsuariosGeneral' %}>Listado General</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+	<a class="dropdown-item" href={% url 'listadoUsuariosEliminados' %}>Listado Usuarios Eliminados</a> <!-- Cambia 'Opción 2' por el texto de tu opción -->
+	<a class="dropdown-item" href={% url 'listadoUsuariosConductor' %}>Listado Usuarios Conductores</a> <!-- Cambia 'Opción 3' por el texto de tu opción -->
+	<a class="dropdown-item" href="#">Listado Usuarios Despachadores</a><!-- Cambia 'Opción 4' por el texto de tu opción -->
+	<a class="dropdown-item" href="#">Listado Usuarios Administradores</a><!-- Cambia 'Opción 5' por el texto de tu opción -->
+	<a class="dropdown-item" href="#">Consulta Usuarios por PK</a> <!-- Cambia 'Opción 6' por el texto de tu opción -->
+	</div>
+				
+	</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% block content %}
+
+<h3>Listado de Usuarios Conductores</h3>
+
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+
+<div class="col-sm-12 col-md-6 col-lg-8 col-xl-12">
+  <h1>Conductores</h1>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+         <th>Nombre Usuario</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Email</th>
+          <th>Fecha de Registro</th>
+          <th>Último Inicio de Sesión</th>
+          <th>Administrador</th>
+          <th>Despachador</th>
+          <th>Conductor</th>
+          <th>Estado Activo</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios_no_staff %}
+        <tr>
+          <td>{{ usuario.username }}</td>
+          <td>{{ usuario.first_name }}</td>
+          <td>{{ usuario.last_name }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.date_joined }}</td>
+          <td>{{ usuario.last_login }}</td>
+          <td>{{ usuario.is_superuser }}</td>
+          <td>{{ usuario.is_staff }}</td>
+          <td>
+            {% if not usuario.is_staff and not usuario.is_superuser %}
+              True
+            {% elif usuario.is_superuser %}
+              False
+            {% else %}
+              False
+            {% endif %}
+          </td>
+          <td>{{ usuario.is_active }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+{% endblock %}

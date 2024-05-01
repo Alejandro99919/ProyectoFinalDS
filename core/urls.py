@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio, eliminarCarro, eliminarEnvio, edicionCarro, edicionEnvio, editarCarros, editarEnvios, cargarCarros, listadoGeneral, listadoEliminados, listadoMantenimiento, listadoEnvios, listadoEnviosEliminados, mostrarVehiculo, consultaPKEnvios, consultaPKVehiculos
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio, eliminarCarro, eliminarEnvio, edicionCarro, edicionEnvio, editarCarros, editarEnvios, cargarCarros, listadoGeneral, listadoEliminados, listadoMantenimiento, listadoEnvios, listadoEnviosEliminados, mostrarVehiculo, consultaPKEnvios, consultaPKVehiculos, DatosUser, listadoUsuariosGeneral, listadoUsuariosEliminados, listadoUsuariosConductor
 
 urlpatterns = [
     path('', home, name='home'),
@@ -42,7 +42,11 @@ urlpatterns = [
     path('areaempresa/cargarCarros/<str:matricula>/', cargarCarros, name='cargarCarros'),
     path('registrarEnvio/', registrarEnvio, name='registrarEnvio'),
     path('consultaPKEnvios/', consultaPKEnvios, name='consultaPKEnvios'),
-path('consultaPKVehiculos/', consultaPKVehiculos, name='consultaPKVehiculos'),
+    path('consultaPKVehiculos/', consultaPKVehiculos, name='consultaPKVehiculos'),
+    path('DatosUser/', DatosUser, name='DatosUser'),
+    path('listadoUsuariosGeneral/', listadoUsuariosGeneral, name='listadoUsuariosGeneral'),
+    path('listadoUsuariosEliminados/', listadoUsuariosEliminados, name='listadoUsuariosEliminados'),
+    path('listadoUsuariosConductor/', listadoUsuariosConductor, name='listadoUsuariosConductor'),
 ]
 
 

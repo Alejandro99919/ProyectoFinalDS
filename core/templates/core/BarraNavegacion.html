@@ -29,13 +29,15 @@
       <li> <a href={% url 'acerca' %}>Acerca de</a></li>
       <li> <a href={% url 'areaempresa' %}>Área Empresa</a></li>
       {% if request.user.is_authenticated %}
-
+      
+      <li><a href={% url 'DatosUser' %}>Datos De Usuarios</a></li>
 
       <li> <a href={% url 'login' %}>{{request.user.username }}<svg xmlns="http://www.w3.org/2000/svg" class="chevron" width="24" height="24" viewBox="0 0 24 24"
         stroke-width="2" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M9 6l6 6l-6 6"></path>
     </svg></a>
+
 
       <div class="subnavigation__wrapper">
         <ul>

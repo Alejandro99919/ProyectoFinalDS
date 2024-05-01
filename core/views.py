@@ -10,8 +10,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
-from .models import Carros,Envios
+from .models import Carros, Envios
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -237,4 +238,22 @@ def mostrarVehiculo(request,pk):
    return render(request, 'ConsultaPKEnvios.html',{'vehiculo':vehiculo})
 
 
-# def acceso_denegado(request):
+@login_required
+def DatosUser(request):
+    if request.user.is_superuser:
+        usuarios = User.objects.all()
+        return render(request, 'core/Datos_Usuarios.html', {'usuarios': usuarios})
+    else:
+        return render(request, 'core/acceso_denegado.html')
+
+def listadoUsuariosGeneral(request):
+    usuarios = User.objects.all()
+    return render(request, 'core/listadoUsuariosGeneral.html', {'usuarios': usuarios})
+
+def listadoUsuariosEliminados(request):
+  usuarios_inactivos = User.objects.filter(is_active=False)  # Filtrar por is_active=False
+  return render(request, 'core/listadoUsuariosEliminados.html', {'usuarios_inactivos': usuarios_inactivos})
+
+def listadoUsuariosConductor(request):
+  usuarios_no_staff = User.objects.exclude(is_superuser=True).exclude(is_staff=True)  # Excluir superusuarios y staff
+  return render(request, 'core/listadoUsuariosConductor.html', {'usuarios_no_staff': usuarios_no_staff})
