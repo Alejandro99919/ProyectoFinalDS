@@ -37,8 +37,10 @@
 						<td>{{c.destino}}</td>
 						<td>{{c.vehiculo_asignado}}</td>
 						<td>{{c.estado}}</td>
+						{% if request.user.is_superuser or request.user.is_staff %}
 						<td><a href={% url 'edicionEnvio' c.id_envio %} class="btn btn-info">Editar</a></td>
 						<td><a href={% url 'eliminarEnvio' c.id_envio %} class="btn btn-danger">Eliminar</a></td>
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>

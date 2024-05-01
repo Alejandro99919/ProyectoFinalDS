@@ -2,24 +2,29 @@
 # Autor      : Alejandro Escobar.
 # Autor      : Kevin Escobar.
 # Fecha      : 26/03/2024
-# Ult Mod    : 24/04/2024
-# Version    : Beta 1.8
+# Ult Mod    : 30/04/2024
+# Version    : Beta 2.0
 
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from .models import Carros,Envios
+from django.contrib.auth import get_user_model
 
 # Create your views here.
+
 def home(request):
 	return render(request, 'core/home.html')
 
 @login_required
 def areaempresa(request):
-    carro = Carros.objects.all()
-    return render(request, 'core/areaempresa.html', {"Vehiculos": carro})
+    if request.user.is_superuser or request.user.is_staff:
+        carro = Carros.objects.all()
+        return render(request, 'core/areaempresa.html', {"Vehiculos": carro})
+    else:
+        return render(request, 'core/areaempresaConductor.html')
 
 @login_required
 def edicionEnvio(request):
@@ -60,32 +65,38 @@ def exit(request):
 	return redirect('home')
 
 def register(request):
-	data = {
-		'form': CustomUserCreationForm()
-	}
-
-	if request.method == 'POST':
-		user_creation_form = CustomUserCreationForm(data=request.POST)
-		# VALIDA LA INFORMACION
-		if user_creation_form.is_valid():
-			user_creation_form.save()
-
-			user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
-			login(request, user)
-
-			return redirect('home')
-
-	return render(request, 'registration/register.html', data)
+    # Verifica si el usuario está logueado
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirigir a la página de login si no está loggeado
+     # Verifica si el usuario actual es superusuario
+    if request.user.is_superuser:
+    	data = {
+    		'form': CustomUserCreationForm()
+    	}
+    	if request.method == 'POST':
+    		user_creation_form = CustomUserCreationForm(data=request.POST)
+    		# VALIDA LA INFORMACION
+    		if user_creation_form.is_valid():
+    			user_creation_form.save()
+    			user = authenticate(username=user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password1'])
+    			login(request, user)
+    			return redirect('home')
+    	return render(request, 'registration/register.html', data)
+    else:
+        # Si no es superusuario, mostrar mensaje de acceso denegado
+        return render(request, 'core/acceso_denegado.html')
 
 def acerca(request):
 	return render(request, 'core/Acercade.html')
 
+@login_required
 def registrarCarros(request):
-	matricula = request.POST['txtMatricula']
-	modelo = request.POST['txtModelo']
-	anioFabricacion = request.POST['txtAnioFabricacion']
-	carros = Carros.objects.create(matricula=matricula, modelo=modelo, anioFabricacion=anioFabricacion)
-	return redirect('areaempresa')
+    if request.method == 'POST':
+        matricula = request.POST['txtMatricula']
+        modelo = request.POST['txtModelo']
+        anioFabricacion = request.POST['txtAnioFabricacion']
+        carros = Carros.objects.create(matricula=matricula, modelo=modelo, anioFabricacion=anioFabricacion)
+        return redirect('areaempresa')
 
 def registrarEnvio(request):
     paquetes_pequeños = request.POST['txtPaquetesPequeños']
@@ -221,11 +232,9 @@ def cargarCarros(request,matricula):
 	carros.save()
 	return redirect('areaempresa')
 
-
-
-
-
-
 def mostrarVehiculo(request,pk):
    vehiculo = get_object_or_404(Carros, pk=pk)
    return render(request, 'ConsultaPKEnvios.html',{'vehiculo':vehiculo})
+
+
+# def acceso_denegado(request):

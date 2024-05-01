@@ -1,0 +1,53 @@
+{% extends 'core/BarraNavegacion.html' %}
+{% block content %}
+
+<h3>Area Empresa</h3>
+<style>
+  /* Aplicamos estilos a la tabla y las celdas (th y td) */
+  .table, .table th, .table td {
+    color: white; /* Color del texto en blanco */
+  }
+</style>
+
+		
+<div class="dropdown">
+	<h2>Listados Vehículos</h2>
+	<!-- Este es el botón que activa la lista desplegable. Puedes cambiar el texto 'Selecciona una opción' por el que prefieras -->
+	<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	  Selecciona una opción
+	</button>
+				
+	<!-- Aquí es donde se definen las opciones de la lista desplegable. Puedes añadir o eliminar opciones según necesites -->
+	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+	<a class="dropdown-item" href={% url 'listadoGeneral' %}>Listado General</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+	<a class="dropdown-item" href={% url 'listadoEliminados' %}>Listado Vehículos Eliminados</a> <!-- Cambia 'Opción 2' por el texto de tu opción -->
+	<a class="dropdown-item" href={% url 'listadoMantenimiento' %}>Listado Vehículos Mantenimiento</a> <!-- Cambia 'Opción 3' por el texto de tu opción -->
+	<a class="dropdown-item" href={% url 'consultaPKVehiculos' %}>Consulta Vehículos por PK</a> <!-- Cambia 'Opción 3' por el texto de tu opción -->
+	</div>
+				
+	</div>
+
+	<div class="dropdown">
+		<h2>Listados Envíos</h2>
+		<!-- Este es el botón que activa la lista desplegable. Puedes cambiar el texto 'Selecciona una opción' por el que prefieras -->
+		<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Selecciona una opción
+		</button>
+				
+		<!-- Aquí es donde se definen las opciones de la lista desplegable. Puedes añadir o eliminar opciones según necesites -->
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		<a class="dropdown-item" href={%url 'listadoEnvios' %}>Listado Envíos</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+		<a class="dropdown-item" href={%url 'listadoEnviosEliminados' %}>Listado Envíos Eliminados</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+		<a class="dropdown-item" href={%url 'consultaPKEnvios' %}>Consulta Envíos por PK</a> <!-- Cambia 'Opción 1' por el texto de tu opción -->
+					
+		</div>
+				
+	</div>
+
+
+
+	
+	
+
+
+{% endblock %}

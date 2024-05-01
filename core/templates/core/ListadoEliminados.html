@@ -35,9 +35,6 @@
 						<td>{{c.cargaActual}}</td>
 						<td>{{c.estado}}</td>
 						<td>{{c.estadoCarga}}</td>
-						<td><a href={% url 'edicionCarro' c.matricula %} class="btn btn-info">Editar</a></td>
-						<td><a href={% url 'eliminarCarro' c.matricula %} class="btn btn-danger">Eliminar</a></td>
-						<td><a href={% url 'cargarCarros' c.matricula %} class="btn btn-danger">Cargar Batería</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>

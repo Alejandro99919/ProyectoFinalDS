@@ -18,7 +18,7 @@ Including another URLconf
 from django.urls import path
 from ProyectoFinal.views import plantillahija1
 from . import views
-from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio,eliminarCarro,eliminarEnvio ,edicionCarro, edicionEnvio,editarCarros,editarEnvios,cargarCarros,listadoGeneral, listadoEliminados,listadoMantenimiento,listadoEnvios,listadoEnviosEliminados,mostrarVehiculo,consultaPKEnvios,consultaPKVehiculos
+from .views import home, areaempresa, exit, register, acerca, registrarCarros, registrarEnvio, eliminarCarro, eliminarEnvio, edicionCarro, edicionEnvio, editarCarros, editarEnvios, cargarCarros, listadoGeneral, listadoEliminados, listadoMantenimiento, listadoEnvios, listadoEnviosEliminados, mostrarVehiculo, consultaPKEnvios, consultaPKVehiculos
 
 urlpatterns = [
     path('', home, name='home'),

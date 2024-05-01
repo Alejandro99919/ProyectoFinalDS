@@ -37,8 +37,6 @@
 						<td>{{c.destino}}</td>
 						<td>{{c.vehiculo_asignado}}</td>
 						<td>{{c.estado}}</td>
-						<td><a href={% url 'edicionEnvio' c.id_envio %} class="btn btn-info">Editar</a></td>
-						<td><a href={% url 'eliminarEnvio' c.id_envio %} class="btn btn-danger">Eliminar</a></td>
 					</tr>
 					{% endfor %}
 				</tbody>

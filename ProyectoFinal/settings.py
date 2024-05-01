@@ -42,8 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    #SE BLOQUEA LA INSTALACION DE USER POR PROBLEMAS
-    #'user',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -138,5 +136,3 @@ LOGOUT_REDIRECT_URL = 'home'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# LA IMPLEMENTACION ESTARA BLOQUEADA POR PROBLEMAS, SE VOLVERA A REHABILITAR UNA VEZ SOLUCIONADO
-#AUTH_USER_MODEL = 'user.User'

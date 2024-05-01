@@ -35,9 +35,11 @@
 						<td>{{c.cargaActual}}</td>
 						<td>{{c.estado}}</td>
 						<td>{{c.estadoCarga}}</td>
+						{% if request.user.is_superuser or request.user.is_staff %}
 						<td><a href={% url 'edicionCarro' c.matricula %} class="btn btn-info">Editar</a></td>
 						<td><a href={% url 'eliminarCarro' c.matricula %} class="btn btn-danger">Eliminar</a></td>
 						<td><a href={% url 'cargarCarros' c.matricula %} class="btn btn-danger">Cargar Batería</a></td>
+						{% endif %}
 					</tr>
 					{% endfor %}
 				</tbody>
