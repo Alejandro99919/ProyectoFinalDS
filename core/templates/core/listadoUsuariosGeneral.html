@@ -38,8 +38,8 @@
           <td>{{ usuario.last_name }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.date_joined }}</td>
-          <td>{{ usuario.is_superuser }}</td>
-          <td>{{ usuario.is_staff }}</td>
+          <td>{% if usuario.is_superuser %}Sí{% else %}No{% endif %}</td>
+          <td>{% if usuario.is_staff %}Sí{% else %}No{% endif %}</td>
           <td>
             {% if not usuario.is_staff and not usuario.is_superuser %}
               Sí
@@ -49,7 +49,7 @@
               No
             {% endif %}
           </td>
-          <td>{{ usuario.is_active }}</td>
+          <td>{% if usuario.is_active %}Sí{% else %}No{% endif %}</td>
           <td>
             <a href="EdicionUsuario/{{usuario.id}}" class="btn btn-primary btn-sm">Editar</a>
             {% if usuario.id != request.user.id %}

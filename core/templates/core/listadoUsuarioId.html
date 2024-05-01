@@ -57,27 +57,27 @@
           </tr>
           <tr>
             <th>Administrador</th>
-            <td>{{ usuario.is_superuser }}</td>
+            <td>{% if usuario.is_superuser %}Sí{% else %}No{% endif %}</td>
           </tr>
           <tr>
             <th>Despachador</th>
-            <td>{{ usuario.is_staff }}</td>
+            <td>{% if usuario.is_staff %}Sí{% else %}No{% endif %}</td>
           </tr>
           <tr>
             <th>Conductor</th>
             <td>
               {% if not usuario.is_staff and not usuario.is_superuser %}
-                True
+                Sí
               {% elif usuario.is_superuser %}
-                False
+                No
               {% else %}
-                False
+                No
               {% endif %}
             </td>
           </tr>
           <tr>
             <th>Estado Activo</th>
-            <td>{{ usuario.is_active }}</td>
+            <td>{% if usuario.is_active %}Sí{% else %}No{% endif %}</td></td>
           </tr>
         </tbody>
       </table>

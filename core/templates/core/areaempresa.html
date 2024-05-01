@@ -1,7 +1,6 @@
 {% extends 'core/BarraNavegacion.html' %}
 {% block content %}
 
-<h3>Area Empresa</h3>
 <style>
   /* Aplicamos estilos a la tabla y las celdas (th y td) */
   .table, .table th, .table td {
@@ -12,6 +11,7 @@
 	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
 		<div class="card">
 			<div class="card-body">
+				<h3>Registrar Vehículo</h3>
 				<form action="/registrarCarros/" method="POST"> {% csrf_token %}
 					<div class="form-group">
 						<input type="text" id="txtMatricula" name="txtMatricula" class="form-control" placeholder="Matricula" minlength="7" maxlength="7" required>
@@ -38,6 +38,7 @@
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-body">
+						<h3>Registrar Envío</h3>
 						<form action="/registrarEnvio/" method="POST"> {% csrf_token %}
 							<div class="form-group">
 								<input type="text" id="txtPaquetesPequeños" name="txtPaquetesPequeños" class="form-control" placeholder="Cant. Paquetes Pequeños" minlength="1" maxlength="7" required>

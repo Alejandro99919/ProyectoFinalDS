@@ -37,18 +37,18 @@
           <td>{{ usuario.last_name }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.date_joined }}</td>
-          <td>{{ usuario.is_superuser }}</td>
-          <td>{{ usuario.is_staff }}</td>
+          <td>{% if usuario.is_superuser %}Sí{% else %}No{% endif %}</td>
+          <td>{% if usuario.is_staff %}Sí{% else %}No{% endif %}</td>
           <td>
             {% if not usuario.is_staff and not usuario.is_superuser %}
-              True
+              Sí
             {% elif usuario.is_superuser %}
-              False
+              No
             {% else %}
-              False
+              No
             {% endif %}
           </td>
-          <td>{{ usuario.is_active }}</td>
+          <td>{% if usuario.is_active %}Sí{% else %}No{% endif %}</td>
         </tr>
         {% endfor %}
       </tbody>
